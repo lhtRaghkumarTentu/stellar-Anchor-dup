@@ -10,7 +10,7 @@ DIRECT_PAYMENT_SERVER = "https://stellaranchordup.herokuapp.com/sep31"
 QUOTE_SERVER = "https://stellaranchordup.herokuapp.com/sep38"
 
 [[CURRENCIES]]
-code = "slht"
+code = "Slht"
 issuer = "GBGA2ZWGXP7KNE6XSJMEXNR2BP57TY2OC2MA2WKANS565MJ6ZPUS6ZA3"
 status = "test"
 is_asset_anchored = true
