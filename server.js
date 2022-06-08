@@ -38,13 +38,13 @@ app.get('/.well-known/stellar.toml', (req, res, next) => {
 app.get('/sep24/info',(req,res)=>{
 res.json({
     "deposit": {
-        "AstroDollar": {
+        "Slht": {
             "enabled": true,
             "fee_fixed": 1.0
         }
     },
     "withdraw": {
-        "AstroDollar": {
+        "Slht": {
             "enabled": true,
             "fee_fixed": 1.0
         }
@@ -63,7 +63,7 @@ res.json({
 app.get('/sep6/info',(req,res)=>{
     res.json({
         "deposit": {
-            "AstroDollar": {
+            "Slht": {
                 "enabled": true,
                 "authentication_required": true,
                 "fields": {
@@ -77,7 +77,7 @@ app.get('/sep6/info',(req,res)=>{
             }
         },
         "withdraw": {
-            "AstroDollar": {
+            "Slht": {
                 "enabled": true,
                 "authentication_required": true,
                 "types": {
@@ -111,7 +111,7 @@ app.get('/sep6/info',(req,res)=>{
             "claimable_balances": true
         },
         "deposit-exchange": {
-            "AstroDollar": {
+            "Slht": {
                 "enabled": true,
                 "authentication_required": true,
                 "fields": {
@@ -125,7 +125,7 @@ app.get('/sep6/info',(req,res)=>{
             }
         },
         "withdraw-exchange": {
-            "AstroDollar": {
+            "Slht": {
                 "enabled": true,
                 "authentication_required": true,
                 "types": {
