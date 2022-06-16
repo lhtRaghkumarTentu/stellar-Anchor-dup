@@ -166,6 +166,11 @@ app.get('/auth',(req, res) => {
     console.info(`${clientPublicKey} requested challenge => OK`);
 })
 
+app.post('/sign',(req,res)=>{
+    const tx = new stellar.Transaction(req.query.transaction,stellar.Networks.TESTNET);
+    tx.sign(SERVER_KEY_PAIR);
+    res.json ({ transaction: tx.toEnvelope().toXDR("base64"), network_passphrase: stellar.Networks.TESTNET});
+})
 
 
 app.listen(port,()=>{
