@@ -21,7 +21,7 @@ const randomNonce = () => {
     return crypto.randomBytes(32).toString("hex");
 };
 
-const account = new stellar.Account(SERVER_KEY_PAIR.publicKey(), INVALID_SEQUENCE);
+
 
 //SEP01
 app.get('/.well-known/stellar.toml', (req, res, next) => {
@@ -146,9 +146,10 @@ app.get('/sep6/info',(req,res)=>{
 })
 
 //SEP10
-app.get('/auth',(req, res) => {
+app.get('/auth',async(req, res) => {
     const clientPublicKey = req.query.account;
-    const minTime = Date.now();
+    const minTime = Math.floor(Date.now() / 1000);
+    console.log(minTime);
     const maxTime = minTime + CHALLENGE_EXPIRE_IN;
     const timebounds = {
       minTime: minTime.toString(),
@@ -156,14 +157,13 @@ app.get('/auth',(req, res) => {
     };
     const op = stellar.Operation.manageData({
         source: clientPublicKey,
-        name: "challengeTx",
+        name: "stellaranchordup.herokuapp.com auth",
         value: randomNonce()
       });
-    const tx = new stellar.TransactionBuilder(account, { timebounds, fee:100}).addOperation(op).setNetworkPassphrase("Test SDF Network ; September 2015").build()
-    console.log(tx)
+    const account = new stellar.Account(SERVER_KEY_PAIR.publicKey(), INVALID_SEQUENCE);
+    const tx = new stellar.TransactionBuilder(account, { timebounds,fee:100}).addOperation(op).setNetworkPassphrase(stellar.Networks.TESTNET).build()
     tx.sign(SERVER_KEY_PAIR);
-    res.json({ transaction: tx.toEnvelope().toXDR("base64"), network_passpharse: "Test SDF Network ; September 2015"});
-    console.info(`${clientPublicKey} requested challenge => OK`);
+    res.json ({ transaction: tx.toEnvelope().toXDR("base64"), network_passphrase: stellar.Networks.TESTNET});
 })
 
 app.post('/sign',(req,res)=>{
