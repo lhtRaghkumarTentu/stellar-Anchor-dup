@@ -14,8 +14,8 @@ app.get("/",(req,res)=>{
 
 app.use(cors());
 
-const SERVER_KEY_PAIR = stellar.Keypair.fromSecret("SA6JUAPMIEOXKFE7VSNTOGB4TFDXRMVCBE6DWZNTW7JWKLMMRJY2ZZMC");
-const INVALID_SEQUENCE = "0"
+const SERVER_KEY_PAIR = stellar.Keypair.fromSecret("SAKWQQN75RVS4MB4SY2DNRP5PQSOHGI5BLKZLQ7SDH34ENARWQGQ5OGO");
+const INVALID_SEQUENCE = "-1"
 const CHALLENGE_EXPIRE_IN = 800
 const randomNonce = () => {
     return crypto.randomBytes(32).toString("hex");
